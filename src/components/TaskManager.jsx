@@ -38,7 +38,12 @@ export default function TaskManager({ session }) {
 
     const { error } = await supabase
       .from('tasks')
-      .insert({ ...newTask, email: session.user.email, img_url: imgUrl })
+      .insert({
+        ...newTask,
+        email: session.user.email,
+        img_url: imgUrl,
+        user_id: session.user.id,
+      })
       .select()
       .single()
 
